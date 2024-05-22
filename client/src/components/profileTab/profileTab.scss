@@ -1,0 +1,18 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+#dropdown-basic {
+    @include flex-row(5px);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    // flex: 0 0 100px;
+}
+
+.menu {
+    background-color: $dark-text;
+    padding: 1.5rem 1rem;
+    align-items: center;
+    margin: 0;
+
+}

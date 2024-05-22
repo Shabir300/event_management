@@ -1,0 +1,80 @@
+@import '../../styles/variables';
+@import '../../styles/designMixins';
+@import '../../styles/responsiveness';
+
+.header {
+    height: 75px;
+    width: 100%;
+    background-color: $primary-color;
+    padding-inline: $primary-padding-web;
+    @include flex-row;
+     align-items: center;
+    justify-content: space-between;
+
+    &_image {
+        @include logo-image;
+    }
+
+    &_navs {
+        @include flex-row(26px);
+        color: $white-text;
+        height: 100%;
+        margin: 0;
+
+        > li {
+            cursor: pointer;
+            width: 50px;
+        }
+
+        > li:hover {
+            color: $secondary-color;
+            // border-bottom: 1px solid $secondary-color;
+            font-weight: bold;
+        }
+        
+        @media  screen and (max-width: 1260px) {
+            display: none;
+        }
+    };
+
+
+};
+
+.registerBtns {
+    @include flex-row(20px);
+    align-items: center;
+    a {
+        text-decoration: none;
+        color: $white-text;
+    }
+
+    > :nth-child(1),
+    > :nth-child(2)  {
+        @include button;
+    }
+
+    // > :last-child {
+    //     @include button-yellow;
+        
+    // }
+
+    > :last-child > a {
+        color: $dark-text;
+    }
+    
+    @media screen and (max-width: 900px) {
+        display: none;
+    }
+
+    .registeredBtn {
+        background: none;
+        border: none;
+        color: $white-text;
+        @include flex-row(5px);
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        align-content: center;
+    }
+}

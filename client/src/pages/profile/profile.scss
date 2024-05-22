@@ -1,0 +1,100 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+
+
+.tabs {
+    padding: 2rem 3rem;
+    padding-bottom: 0;
+};
+
+/* customStyles.css */
+
+.nav-tabs .nav-link {
+    color: $light-text; /* Change this to your desired color */
+}
+  
+.nav-tabs .nav-link.active {
+    color: $dark-text; /* Change this to your desired active color */
+}
+  
+
+.profile {
+
+    padding: 5rem;
+
+    
+h1 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    border-bottom: 1px solid #6F6F6F;
+    padding-bottom: 1.3rem;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 2rem;
+    text-align: center;
+}
+
+label {
+    font-weight: 500;
+    font-size: 1.5rem;
+    flex: 0 0 11rem;
+    text-align: right;
+};
+
+    &__form {
+        @include flex-col(5.625rem);
+        margin-top: 5rem;
+        
+        &__singleSection {
+            @include flex-col(2rem);
+            max-width: 52.18rem;
+
+            img {
+                width: 12.5rem;
+                height: 12.5rem;
+                border-radius: 50%;
+                border: none;
+                background-color: $light-text;
+                margin-inline: auto;
+                position: relative;
+            }
+
+            i {
+                font-size: $medium-title;
+                position: relative;
+                bottom: 5rem;
+                right: -4rem;
+                margin-inline: auto;
+                // padding: 1rem;
+                width: 56.6px;
+                height: 56.6px;
+                border-radius: 50%;
+                border: 1px solid $dark-text;
+                background: $white-text;
+                display: grid;
+                place-items: center;
+            }
+
+            > label {
+                flex: 0;
+            }
+
+            &__inputBox {
+                @include flex-row($form-input-gap);
+                align-items: center;
+                input {
+                    @include small-input;
+                    flex: 1;
+                }
+            }
+        }
+
+        &__saveProfileBtn {
+            @include normal-button;
+        }
+    }
+};
+

@@ -1,0 +1,183 @@
+@import '../../styles/variables';
+@import '../../styles/designMixins';
+
+.createEvent {
+
+    padding-inline: $event-padding-inline-vw;
+    padding-block: $event-padding-block;
+    color: $dark-text;
+    padding-bottom: 5rem;
+
+    &_title {
+        @include first-title;
+    }
+
+    &__inputsForm {
+        margin-top: 8.75rem;
+        @include flex-col(90px);
+        align-items: flex-start;
+
+        &__details {
+            @include flex-col(30px);
+            width: 100%;
+            
+            &__title {
+                @include secondary-title;
+            }
+
+            &__inputBox {
+                @include flex-col(10px);
+                // display: inline;
+                label {
+                    @include tertiary-title;
+                }
+                input {
+                    @include normal-input;
+                } 
+                span {
+                    color: $light-text;
+                }
+            }
+        }
+
+        &__dateTime {
+            @include flex-col(30px);
+            width: 100%;
+
+            // &__InputPickers {
+            //     @include flex-row;
+            //     // justify-content: space-between;
+            //     input {
+            //         width: 100%;
+            //     }
+            // }
+
+             &__InputPickers {
+                @include flex-col(30px);
+                
+            }
+
+            &__radiosBox {
+                @include flex-row(15px);
+                align-items: center;
+                label {
+                   @include tertiary-title;
+                }
+                input {
+                    padding: 0;
+                    color: $dark-text;
+                }
+            }
+            
+            &__title {
+                @include secondary-title;
+            }
+
+            &__inputBox {
+                @include flex-col(10px);
+                position: relative;
+                label {
+                    @include tertiary-title;
+                }
+                input {
+                    @include normal-input;
+                }
+
+                >.bi.bi-calendar3 {
+                    position: absolute;
+                    right: 1rem;
+                    top: 2.6rem;
+                    font-size: $small-text;
+                }
+            }
+        }
+
+        &__location {
+            @include flex-col(30px);
+            width: 100%;
+            
+            &__title {
+                @include secondary-title;
+            }
+
+            &__inputBox {
+                @include flex-col(10px);
+                label {
+                    @include tertiary-title;
+                }
+                input {
+                    @include normal-input;
+                }
+            }
+        }
+
+        &__description {
+            @include flex-col(30px);
+            width: 100%;
+            
+            &__title {
+                @include secondary-title;
+            }
+
+            &__inputBox {
+                @include flex-col(10px);
+                > textarea {
+                    @include normal-textarea;
+                }
+                label {
+                    @include tertiary-title;
+                }
+                input {
+                    @include normal-input;
+                }
+            }
+        }
+
+        &__saveBtn {
+            @include button;
+            float: right;
+            align-self: flex-end;
+        }
+    }
+
+    &__ticketing {
+        padding-top: 8.75rem;
+        &__details {
+            &__title {
+                @include secondary-title;
+            }
+
+            &__typeBox {
+                @include flex-row(3.75rem);
+                margin-top: 1.8rem;
+                &__singleType {
+                    // padding: 100px 70px 20px 70px;
+                    width: 24.25rem;
+                    height: 10.40625rem;
+                    border: 1px solid $light-text;
+                    border-radius: 10px;
+                    @include flex-col;
+                    position: relative;
+                    text-align: center;
+                    justify-content: flex-end;
+                    padding-bottom: 1rem;
+
+                    i {
+                        font-size: $big-title;
+                        rotate: 40deg;
+                        // position: absolute;
+                        // top: 1rem;
+                        // right: 40%;
+                    } 
+                }
+            }
+        }
+    }
+
+    &__saveBtn {
+        @include button;
+        margin-top: 13.5rem;
+        float: right;
+        margin-bottom: 5rem;
+    }
+}

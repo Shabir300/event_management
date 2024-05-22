@@ -1,0 +1,174 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+
+.singleEvent {
+    @include single-event-design;
+    
+    img {
+        width: 100%;
+        @media screen and (max-width: 800px) {
+            width: 100vw;
+            display: none;
+        }
+    }
+
+    &_titleShare {
+        @include flex-row;
+        justify-content: space-between;
+
+        @media screen and (max-width: 800px) {
+            @include flex-col;
+        }
+
+        &_Icons {
+            @include flex-row(40px);
+            font-size: $medium-title;
+
+            @media screen and (max-width: 800px) {
+                align-self: flex-end;
+                 font-size: $small-title;
+            }
+        }
+    }
+
+    &_dateTicket {
+        @include flex-row;
+        justify-content: space-between;
+
+        @media screen and (max-width: 800px) {
+            @include flex-col(40px);
+        }
+
+        &_fullDate {
+            @include flex-col(10px); /* might need changes */
+            i {
+                margin-right: 1rem;
+            }
+            a {
+                color: #4539B4;
+                font-weight: 500;
+            }
+        }
+
+        &_tickets {
+            @include flex-col(50px); /* might need changes */
+            > div {
+                position: relative;
+                .bi.bi-ticket-perforated {
+                    position: absolute;
+                    top: .7rem;
+                    left: 3rem;
+                    rotate: 120deg;
+                    font-size: $medium-title;
+                    @media screen and (max-width: 800px) {
+                        font-size: 24px;
+                    }
+                }
+
+                > button {
+                    @include button-yellow;
+                    padding:  1.25rem 3.75rem 1.25rem 6.25rem;
+                    font-size: $small-title;
+                    font-weight: 500;
+                    cursor: auto;
+
+                    @media screen and (max-width: 800px) {
+                        font-size: 16px;
+                        padding:  1.25rem 3.75rem 1.25rem 5.5rem;
+                    }
+                }
+            } 
+        }
+    }
+
+    &_location {
+        @include flex-col(28px);
+        padding-right: $event-padding-inline-vw;
+        justify-content: flex-start;
+
+        &_iconandplace {
+            @include flex-row(20px);
+            align-items: flex-start;
+            .bi.bi-geo-alt-fill {
+                font-size: $small-text;
+            }
+        }
+    }
+
+    &_hostedBy {
+        @include flex-col(40px);
+        align-items: flex-start;
+
+        &_Organizer {
+            @include flex-row(30px);
+            align-items: center;
+
+            img {
+                width: 80px;
+                height: auto;
+            }
+
+            &_desc {
+                @include flex-col(10px);
+                align-content: space-between;
+                h7 {
+                    font-size: $small-title;
+                }
+
+                &_btns {
+                    @include flex-row(10px);
+                    justify-content: space-between;
+
+                    button {
+                        @include button;
+                        border-radius: 10px;
+                        padding-block: 7px;
+
+                        @media screen and (max-width: 800px) {
+                            padding-block: 8px;
+                        }
+                    }
+
+                    >:first-child {
+                        background-color: $white-text;
+                        color: $dark-text;
+                        border: 1px solid $dark-text;
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    &_eventDescription {
+        @include flex-col(40px);
+        align-items: flex-start;
+
+    }
+
+    &_tags {
+        @include flex-col(40px);
+       
+        &_texts {
+            @include flex-row(28px);
+            @media screen and (max-width: 800px) {
+                gap: 10px;
+            }
+            flex-wrap: wrap;
+            > span {
+                color: $light-text;
+                padding: 12px 28px;
+                background-color: #F8F7FA;
+                width: fit-content;
+                border-radius: 50px;
+
+                @media screen and (max-width: 800px) {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    
+}

@@ -1,0 +1,7 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+.register {
+    @include login-register-design;
+    
+}

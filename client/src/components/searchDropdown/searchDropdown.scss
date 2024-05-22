@@ -1,0 +1,25 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+
+.dropdownComponent {
+    width: 100%;
+    >* {
+        width: 100%;
+        text-align: left;
+    }
+
+    &__toggle {
+        width: 100%;
+        background-color: transparent;
+        @include normal-input;
+    }
+}
+
+
+// #dropdown-basic {
+//     @include normal-input;
+//     background-color: transparent;
+//     color: $light-text;
+//     width: 100%;
+// }

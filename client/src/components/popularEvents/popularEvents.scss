@@ -1,0 +1,10 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+.popularEvents {
+    @include section-design;
+
+    &_section-title {
+        @include section-title;
+    }
+}

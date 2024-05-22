@@ -1,0 +1,84 @@
+// src/styles/_responsiveness.scss
+
+// Define mixins for common device sizes
+
+// Small devices (portrait phones, less than 576px)
+@mixin small-screen {
+    @media (max-width: 575.98px) {
+      @content;
+    }
+  }
+  
+  // Medium devices (landscape phones, 576px and up)
+  @mixin medium-screen {
+    @media (min-width: 576px) and (max-width: 767.98px) {
+      @content;
+    }
+  }
+  
+  // Large devices (tablets, 768px and up)
+  @mixin large-screen {
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      @content;
+    }
+  }
+  
+  // Extra large devices (desktops, 992px and up)
+  @mixin xlarge-screen {
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+      @content;
+    }
+  }
+  
+  // Extra extra large devices (large desktops, 1200px and up)
+  @mixin xxlarge-screen {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+  
+  // -------------------------------------------
+  // -------------------------------------------
+  // -------------------------------------------
+  // -------------------------------------------
+  // -------------------------------------------
+
+
+// src/styles/_responsiveness.scss
+
+// Define mixins for common device sizes
+
+// Extra extra large devices (large desktops, 1200px and up)
+@mixin -xxlarge-screen {
+  @media (max-width: 1199.98px) {
+    @content;
+  }
+}
+
+// Extra large devices (desktops, 992px and up)
+@mixin -xlarge-screen {
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    @content;
+  }
+}
+
+// Large devices (tablets, 768px and up)
+@mixin -large-screen {
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    @content;
+  }
+}
+
+// Medium devices (landscape phones, 576px and up)
+@mixin -medium-screen {
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    @content;
+  }
+}
+
+// Small devices (portrait phones, less than 576px)
+@mixin -small-screen {
+  @media (max-width: 575.98px) {
+    @content;
+  }
+}

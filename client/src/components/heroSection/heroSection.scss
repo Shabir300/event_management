@@ -1,0 +1,33 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+.heroSection {
+    height: 36rem;
+    width: 100%;
+    @include background-image('../../../public/static/heroBanner.jpg', 0.4);
+    @include flex-col(58px);
+    justify-content: center;
+    justify-items: center;
+    margin-inline:  auto;
+    color: $white-text;
+    > * {
+        z-index: 10;
+        padding-inline: $primary-padding-web;
+    }
+
+    > div {
+        position: relative;
+        > input {
+            margin-inline: auto;
+            justify-self: center;
+            align-self: center;
+            padding-left: 4rem;
+            width: 100%;
+        }
+
+        .bi.bi-search {
+            @include search-icon;
+        }
+    }
+    
+}

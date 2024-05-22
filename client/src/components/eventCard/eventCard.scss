@@ -1,0 +1,14 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+
+.eventCard {
+    @include event-card;
+    &_image {
+        @include event-card-image;
+    }
+
+    &_description {
+        @include event-card-description;
+    }
+}
