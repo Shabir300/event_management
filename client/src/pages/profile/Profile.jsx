@@ -44,7 +44,7 @@ function AutohideExampleError() {
     // const user = useSelector(state => state.user.user);
     // console.log('react redux user: ', user);
 
-    const {isLoading, error, data} = useQuery({
+    const { data} = useQuery({
         queryKey: ['user'],
         queryFn: () => makeRequest.get('/get-user').then(res => res.data),
     });
