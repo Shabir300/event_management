@@ -209,7 +209,7 @@ const EmailInfo = () => {
         if (emailInputs.email === emailInputs.confirmEmail) {
             emailMutation.mutate(emailInputs);
         } else {
-            setConfirmEmailError(`Passwords must match!`)
+            setConfirmEmailError(`emails must match!`)
         }
         
     }
@@ -256,27 +256,43 @@ const PasswordInfo = () => {
             setPasswordInputs(prev => ({...prev, [e.target.name]: e.target.value}))
         };
 
-        const handleSavePassword = async (e) => {
-            e.preventDefault();
-
-            try {
-                const res = await makeRequest.put('/change-password', passwordInputs);
-                console.log('res for incorrect pass: ', res)
-                if(res !== 'Current password is incorrect!' && res?.data?.affectedRows > 0) {
-                    setInputs({
-                        currentPassword: '',
-                        newPassword: '',
-                        confirmPassword: ''
-                    });
-                    setToastText('Your password has been changed!');
-                    setShowSuccessToast(true);
+        const passwordMutation = useMutation({
+            mutationKey: ['user'],
+            mutationFn: (passwordInputs) => makeRequest.put('/change-password', passwordInputs).then(res => res),
+            onSuccess: (res) => {
+                queryClient.invalidateQueries({ queryKey: ['user'] });
+                console.log('pass change res: ', res)
+                if (res.status === 201) {
+                    // setInputs({
+                    //     currentPassword: '',
+                    //     newPassword: '',
+                    //     confirmPassword: ''
+                    // });
                 }
-                return res;
-            } catch(err) {
+                setToastText('Your password has been changed!');
+                setShowSuccessToast(true);
+            },
+            onError: (err) => {
                 setShowErrorToast(true);
                 setToastText(err?.response.data || 'Password cannot be changed!')
-                return err;
             }
+
+        })
+
+        const handleSavePassword = async (e) => {
+            e.preventDefault();
+            passwordMutation.mutate(passwordInputs);
+            // try {
+            //     const res = await makeRequest.put('/change-password', passwordInputs);
+            //     console.log('res for incorrect pass: ', res)
+            //     if(res !== 'Current password is incorrect!' && res?.data?.affectedRows > 0) {
+                    
+            //     }
+            //     return res;
+            // } catch(err) {
+                
+            //     return err;
+            // }
         }
 
         return (
