@@ -15,29 +15,29 @@ const Profile = () => {
     const [showErrorToast, setShowErrorToast] = useState(false);
     const [toastText, setToastText] = useState('');
 
-function AutohideExample() {
-    return (
-        <Row className='autoHideToast'>
-        <Col xs={6}>
-            <Toast  bg='success' onClose={() => setShowSuccessToast(false)} show={showSuccessToast} delay={5000} autohide>
-            <Toast.Body className='text-white'>{toastText}</Toast.Body>
-            </Toast>
-        </Col>
-        </Row>
-    );
-};
+// function AutohideExample() {
+//     return (
+//         <Row className='autoHideToast'>
+//         <Col xs={6}>
+//             <Toast  bg='success' onClose={() => setShowSuccessToast(false)} show={showSuccessToast} delay={5000} autohide>
+//             <Toast.Body className='text-white'>{toastText}</Toast.Body>
+//             </Toast>
+//         </Col>
+//         </Row>
+//     );
+// };
 
-function AutohideExampleError() {
-    return (
-        <Row className='autoHideToast'>
-        <Col xs={6}>
-            <Toast  bg='danger' onClose={() => setShowErrorToast(false)} show={showErrorToast} delay={5000} autohide>
-            <Toast.Body className='text-white'>{toastText}</Toast.Body>
-            </Toast>
-        </Col>
-        </Row>
-    );
-}
+// function AutohideExampleError() {
+//     return (
+//         <Row className='autoHideToast'>
+//         <Col xs={6}>
+//             <Toast  bg='danger' onClose={() => setShowErrorToast(false)} show={showErrorToast} delay={5000} autohide>
+//             <Toast.Body className='text-white'>{toastText}</Toast.Body>
+//             </Toast>
+//         </Col>
+//         </Row>
+//     );
+// }
 
     const queryClient = useQueryClient();
 
@@ -69,6 +69,7 @@ function AutohideExampleError() {
     // console.log('user data from query: ', user)
 
     const [inputs, setInputs] = useState({
+        profilePic: '',
         name: '',
         website: '',
         company: '',
@@ -82,6 +83,7 @@ function AutohideExampleError() {
     useEffect(() => {
         if (user) {
             setInputs({
+                profilePic: user.profilePic,
                 name: user.name,
                 website: user.website,
                 company: user.company,
@@ -101,11 +103,55 @@ function AutohideExampleError() {
 
 const AccountInfo = () => { 
 
-        const handleSave = async (e) => {
-            e.preventDefault();
+    const [file, setFile] = useState(null);
+    const [fileUrl, setFileUrl] = useState(''); 
 
-            userMutation.mutate(inputs);
-        };
+    const form = new FormData();
+    form.append('file', file);
+
+    const handleFileChange = (e) => {
+        // e.preventDefault();
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+
+        const url = URL.createObjectURL(selectedFile);
+        setFileUrl(url);
+    };
+
+    const profileMutation = useMutation({
+        mutationKey: ['user'],
+        mutationFn: (form) => makeRequest.post('/upload', form).then(res => res),
+        onSuccess: (res) => {
+            const updatedInputs = {...inputs, profilePic: res.data};
+            setInputs(updatedInputs);
+            // queryClient.invalidateQueries({ queryKey: ['user'] });
+            // console.log('profile: ', res.data)
+
+        }
+    });
+
+    console.log('inputs: ', inputs)
+
+    const handleSave = async (e) => {
+        e.preventDefault();
+        await profileMutation.mutateAsync(form);
+        userMutation.mutate(inputs);
+        // try {
+        //     const res = await makeRequest.post('/upload', form);
+        //     const updatedInputs = { ...inputs, profilePic: res.data };
+
+        // // Set the updated inputs in the state
+        // setInputs(updatedInputs);
+
+        // // Call the user mutation with the updated inputs
+        //     return res;
+        // } catch (err) {
+            //     return err;
+            // }
+        
+    };
+
+
 
         return (
             <div className='profile'>
@@ -114,12 +160,12 @@ const AccountInfo = () => {
         <div className='profile__form'>
             <div className='profile__form__singleSection'>
                 <h2>Profile Photo</h2>
-                <img src={user?.profilePic ? user.profilePic : '/static/hostImage.png'} alt='profile-img' className='profile__form__singleSection__profileImage' />
+                <img src={fileUrl ===  '' && user.profilePic ? `/uploads/${user.profilePic}` : `${fileUrl}`} alt='profile-img' className='profile__form__singleSection__profileImage' />
                 <label className=''>
                     <i className="bi bi-camera-fill"></i>
-                    <input type='file' hidden  />
+                    <input type='file' hidden onChange={handleFileChange} />
                 </label>
-                
+            
             </div>
             <div className='profile__form__singleSection'>
                 <h2>Profile Information</h2>
@@ -282,17 +328,6 @@ const PasswordInfo = () => {
         const handleSavePassword = async (e) => {
             e.preventDefault();
             passwordMutation.mutate(passwordInputs);
-            // try {
-            //     const res = await makeRequest.put('/change-password', passwordInputs);
-            //     console.log('res for incorrect pass: ', res)
-            //     if(res !== 'Current password is incorrect!' && res?.data?.affectedRows > 0) {
-                    
-            //     }
-            //     return res;
-            // } catch(err) {
-                
-            //     return err;
-            // }
         }
 
         return (
@@ -327,8 +362,20 @@ const PasswordInfo = () => {
   return (
 <>
     <Header />
-    <AutohideExample />
-    <AutohideExampleError />
+    {/* <AutohideExample />
+    <AutohideExampleError /> */}
+    <Row className='autoHideToast'>
+                <Col xs={6}>
+                    <Toast bg='success' onClose={() => setShowSuccessToast(false)} show={showSuccessToast} delay={5000} autohide>
+                        <Toast.Body className='text-white'>{toastText}</Toast.Body>
+                    </Toast>
+                </Col>
+                <Col xs={6}>
+                    <Toast bg='danger' onClose={() => setShowErrorToast(false)} show={showErrorToast} delay={5000} autohide>
+                        <Toast.Body className='text-white'>{toastText}</Toast.Body>
+                    </Toast>
+                </Col>
+            </Row>
 
         {/* <UncontrolledExample /> */}
         <Tabs

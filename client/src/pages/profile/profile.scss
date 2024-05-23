@@ -52,6 +52,26 @@ label {
             @include flex-col(2rem);
             max-width: 52.18rem;
 
+            .previewDiv {
+                width: 20rem;
+                height: 20rem;
+                background-color: white;
+                // border: 1px solid $dark-text;
+                position: fixed;
+                top: 40%;
+                right: 50%;
+                display: grid;
+                place-items: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+               > button {
+                    border: none;
+                    background: none;
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                }
+            }
+
             img {
                 width: 12.5rem;
                 height: 12.5rem;
