@@ -97,7 +97,6 @@ const Profile = () => {
     }, [user]);
 
     const handleChange = (e) => {
-        e.preventDefault();
         setInputs(prev => ({...prev, [e.target.name]: e.target.value}));
     }
 
@@ -105,9 +104,6 @@ const AccountInfo = () => {
 
     const [file, setFile] = useState(null);
     const [fileUrl, setFileUrl] = useState(''); 
-
-    const form = new FormData();
-    form.append('file', file);
 
     const handleFileChange = (e) => {
         // e.preventDefault();
@@ -120,7 +116,7 @@ const AccountInfo = () => {
 
     const profileMutation = useMutation({
         mutationKey: ['user'],
-        mutationFn: (form) => makeRequest.post('/upload', form).then(res => res),
+        mutationFn: (formData) => makeRequest.post('/upload', formData).then(res => res),
         onSuccess: (res) => {
             const updatedInputs = {...inputs, profilePic: res.data};
             setInputs(updatedInputs);
@@ -134,20 +130,15 @@ const AccountInfo = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        await profileMutation.mutateAsync(form);
-        userMutation.mutate(inputs);
-        // try {
-        //     const res = await makeRequest.post('/upload', form);
-        //     const updatedInputs = { ...inputs, profilePic: res.data };
-
-        // // Set the updated inputs in the state
-        // setInputs(updatedInputs);
-
-        // // Call the user mutation with the updated inputs
-        //     return res;
-        // } catch (err) {
-            //     return err;
-            // }
+        const formData = new FormData();
+        formData.append('file', file);
+        
+        try {
+            await profileMutation.mutateAsync(formData);
+            userMutation.mutate(inputs);
+        } catch (error) {
+            // Handle error
+        }
         
     };
 
@@ -160,7 +151,7 @@ const AccountInfo = () => {
         <div className='profile__form'>
             <div className='profile__form__singleSection'>
                 <h2>Profile Photo</h2>
-                <img src={fileUrl ===  '' && user.profilePic ? `/uploads/${user.profilePic}` : `${fileUrl}`} alt='profile-img' className='profile__form__singleSection__profileImage' />
+                <img src={fileUrl ===  '' && user?.profilePic ? `/uploads/${user.profilePic}` : `${fileUrl}`} alt='profile-img' className='profile__form__singleSection__profileImage' />
                 <label className=''>
                     <i className="bi bi-camera-fill"></i>
                     <input type='file' hidden onChange={handleFileChange} />

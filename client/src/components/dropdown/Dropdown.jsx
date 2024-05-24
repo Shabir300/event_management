@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import './dropdown.scss';
 import Form from 'react-bootstrap/Form';
+import { makeRequest } from '../../axios.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const CustomMenu = React.forwardRef(
   ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
@@ -33,6 +36,24 @@ const CustomMenu = React.forwardRef(
 );
 
 function BasicExample({placeholder}) {
+
+  const [categories, setCategories] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const res = await makeRequest.get('/get-categories');
+            console.log('cat res: ', res);
+            // Handle the response here, e.g., set state
+        } catch (err) {
+            console.error('Error fetching categories:', err);
+            // Handle the error here, e.g., set error state
+        }
+    };
+
+    fetchData(); // Call the async function
+}, []);
+
   return (
     <Dropdown className='dropdownComponent'>
       <Dropdown.Toggle className='dropdown-toggle' variant="info" id="dropdown-basic">

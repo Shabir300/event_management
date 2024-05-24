@@ -141,8 +141,10 @@
     }
 
     &__ticketing {
+
         padding-top: 8.75rem;
         &__details {
+
             &__title {
                 @include secondary-title;
             }
@@ -161,6 +163,7 @@
                     text-align: center;
                     justify-content: flex-end;
                     padding-bottom: 1rem;
+                    cursor: pointer;
 
                     i {
                         font-size: $big-title;
@@ -180,4 +183,35 @@
         float: right;
         margin-bottom: 5rem;
     }
+}
+
+
+.ticketBoxDiv {
+    background-color: #EEEEEE;
+    padding: 1rem 2rem;
+    @include flex-col(5px);
+
+    button {
+        float: right;
+        align-self: flex-end;
+        width: fit-content;
+        border-radius: 50%;
+        font-weight: bold;
+        align-self: flex-end;
+        background-color: $white-text;
+        border: none;
+        padding: .5rem 1rem;
+    }
+}
+
+.addTicketBtn {
+    // @include button;
+    width: fit-content;
+    // padding: .7rem 2rem;
+    padding: .5rem 1rem;
+    border-radius: 50%;
+    float: right;
+    align-self: flex-end;
+    background: transparent;
+    border: 1px solid $light-text;
 }

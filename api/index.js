@@ -4,6 +4,8 @@ import authRouter from './routes/authRouter.js';
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/userRouter.js';
 import multer from 'multer'; 
+import categoryRouter from './routes/categoryRouter.js';
+import eventRouter from './routes/eventRouter.js';
 
 const app = express();
 
@@ -39,5 +41,7 @@ app.post('/api/upload', upload.single('file'), function (req, res) {
 // ROUTES 
 app.use('/api', authRouter);
 app.use('/api', userRouter);
+app.use('/api', categoryRouter);
+app.use('/api', eventRouter)
 
 app.listen(9000, () => console.log('server is listening!'));
