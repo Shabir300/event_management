@@ -6,8 +6,9 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Event from './pages/event/Event';
 import Profile from './pages/profile/Profile';
-import CreateEvent from './pages/createEvent/CreateEvent'
-import {createBrowserRouter, RouterProvider, Outlet, Navigate} from 'react-router-dom';
+import CreateEvent from './pages/createEvent/CreateEvent';
+import Events from './pages/events/Events';
+import {createBrowserRouter, RouterProvider, Outlet, Navigate, json} from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
     {
       path: '/profile',
       element: <Profile />,
+    },
+    {
+      path: '/events',
+      element: <Events />,
     }
 ]);
 

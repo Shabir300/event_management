@@ -1,21 +1,22 @@
 import React from 'react';
 import './popularEvents.scss';
 import EventCard from '../eventCard/EventCard';
+import { useSelector } from 'react-redux'
 
 const PopularEvents = () => {
+
+  const searchedEvents = useSelector(state => state.events.value);
+  // console.log('redux events:', searchedEvents);
+
   return (
     <div className='popularEvents'>
         <div className="popularEvents_section-title">
-            Popular Events In Islamabad
+            Explore Events Around The City
         </div>
         <div>
-          <EventCard/>
-          <EventCard/>
-          <EventCard/>
-          <EventCard/>
-          <EventCard/>
-          <EventCard/>
-
+          {searchedEvents?.map(event => (
+            <EventCard event={event} />
+          ))}
         </div>
 
     </div>

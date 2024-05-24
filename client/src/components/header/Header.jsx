@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import './header.scss';
 import { AuthContext } from '../../context/authContext';
 import BasicExample from '../profileTab/ProfileTab';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -16,10 +17,10 @@ const Header = () => {
 
         <div>
             <ul className='header_navs'>
-                <li>Home</li>
-                <li>Events</li>
-                <li>About</li>
-                <li>Contact</li>
+              <li><Link className='link' to='/'>Home</Link></li>
+              <li><Link className='link' to='/events'>Events</Link></li>
+              <li><Link className='link' to='/about'>About</Link></li>
+              <li><Link className='link' to='/contact'>Contact</Link></li>
             </ul>
         </div>
 

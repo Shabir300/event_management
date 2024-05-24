@@ -1,7 +1,8 @@
 import React from 'react';
 import './eventCard.scss';
 
-const EventCard = () => {
+const EventCard = ({event}) => {
+  console.log('event', event)
   return (
     <div className='eventCard'>
         
@@ -11,9 +12,9 @@ const EventCard = () => {
                 NOV <br /> 24
             </div>
             <div>
-                    <span>Lakeside Camping at Pawna</span>
+                    <span>{event.title}</span>
                     <span>Online</span>
-                    <span>8:30 AM - 7:30 PM</span>
+                    <span>{event.startDate} - {event.endDate}</span>
                     <span>Interested  *Free</span>
 
             </div>

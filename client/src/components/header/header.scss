@@ -21,9 +21,23 @@
         height: 100%;
         margin: 0;
 
+
         > li {
             cursor: pointer;
             width: 50px;
+            text-decoration: none;
+            color: $white-text;
+
+            .link {
+                text-decoration: none;
+                color: $white-text;
+            }
+
+            .link:hover {
+                color: $secondary-color;
+                // border-bottom: 1px solid $secondary-color;
+                font-weight: bold;
+            }
         }
 
         > li:hover {
