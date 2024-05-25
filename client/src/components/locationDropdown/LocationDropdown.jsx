@@ -108,7 +108,7 @@ const handleSelectLocation = (name) => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu >
-        {locations && locations?.map(location => (
+        {locations?.map(location => (
         <Dropdown.Item onClick={() => handleSelectLocation(location)}>{location}</Dropdown.Item>
         ))}
 

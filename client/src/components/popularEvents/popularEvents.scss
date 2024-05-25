@@ -6,5 +6,15 @@
 
     &_section-title {
         @include section-title;
+        @include flex-row;
+        justify-content: space-between;
+    }
+
+    &__sortBy {
+        @include flex-row(10px);
+        align-items: center;
+        font-weight: bold;
+        float: right;
+        font-size: $small-text;
     }
 }

@@ -1,0 +1,31 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+.dropdownComponent {
+    width: 100%;
+    >* {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+.dropdownComponent.eventsSearch {
+    flex: 0.2;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+    outline: none;
+    padding-block: 4px;
+    background: $white-text;
+    font-size: 16px;
+    border-left: 1px solid $light-text;
+}
+
+
+
+.dropdownComponent.eventsSearch > #dropdown-basic {
+    @include normal-input;
+    background-color: transparent;
+    color: $light-text;
+    border: none;
+}

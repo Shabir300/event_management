@@ -23,10 +23,20 @@
             align-self: center;
             padding-left: 4rem;
             width: 100%;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
         }
 
         .bi.bi-search {
             @include search-icon;
+        }
+    };
+
+    &__searchBox {
+        @include flex-row;
+        align-items: center;
+        &__searchInput {
+            flex: 1;
         }
     }
     

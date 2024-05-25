@@ -12,8 +12,12 @@ const createEventSlice= createSlice({
         location: '',
         description: '',
         free: false,
+        tickets: [],
     },
     reducers: {
+        setTickets: (state, action) => {
+            state.tickets = action.payload;
+        },
         setBanner: (state, action) => {
             state.bannerObj = action.payload;
         },
@@ -44,6 +48,6 @@ const createEventSlice= createSlice({
     }
 });
 
-export const {setBanner, setEditInputs, setFree, setTitle, setCategory, setType, setStartDate, setEndDate, setLocation, setDescription}  = createEventSlice.actions;
+export const {setBanner, setTickets, setEditInputs, setFree, setTitle, setCategory, setType, setStartDate, setEndDate, setLocation, setDescription}  = createEventSlice.actions;
 
 export default createEventSlice.reducer;

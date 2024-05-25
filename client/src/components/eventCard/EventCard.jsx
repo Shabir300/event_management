@@ -2,7 +2,11 @@ import React from 'react';
 import './eventCard.scss';
 
 const EventCard = ({event}) => {
-  console.log('event', event)
+  console.log('event', event);
+  // const tickets = 
+  const tickets = JSON.parse(event.tickets);
+
+
   return (
     <div className='eventCard'>
         
@@ -15,7 +19,11 @@ const EventCard = ({event}) => {
                     <span>{event.title}</span>
                     <span>Online</span>
                     <span>{event.startDate} - {event.endDate}</span>
-                    <span>Interested  *Free</span>
+                    <div className='eventCard__tickets'>
+                    {tickets?.map(ticket => (
+                      <span>{ticket.ticketName} - {ticket.ticketPrice}</span>
+                    ))}
+                    </div>
 
             </div>
         </div>

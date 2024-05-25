@@ -3,7 +3,7 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { useDispatch, useSelector } from "react-redux";
 import { setCategory, setDescription, setEndDate, setLocation, setStartDate, setTitle, setType } from "../../redux/createEventSlice";
-import LocationDropdown from '../dropdown/LocationDropdown';
+import LocationDropdown from '../locationDropdown/LocationDropdown';
 
 const EditForm = () => {
 

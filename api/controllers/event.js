@@ -31,7 +31,7 @@ export const addEvent = (req, res) => {
 
 export const getEventSearch = (req, res) => {
 
-    const q = `SELECT * FROM events WHERE title LIKE '%${req.query.search}%'`
+    const q = `SELECT e.id, e.title, e.category, e.type, e.startDate, e.endDate, e.location, e.description, JSON_ARRAYAGG(JSON_OBJECT('ticket_id', t.id, 'ticketName', t.ticketName, 'ticketPrice', t.ticketPrice)) as tickets FROM events AS e LEFT JOIN tickets AS t ON t.eventId = e.id WHERE e.title LIKE '%${req.query.search}%' AND e.location LIKE '%${req.query.location}%' GROUP BY e.id, e.title, e.category, e.type, e.startDate, e.endDate, e.location, e.description`
 
     db.query(q, (err, result) => {
         if(err) return res.status(500).json(err);

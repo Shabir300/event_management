@@ -22,6 +22,25 @@ const CreateEvent = () => {
     const description = useSelector(state => state.createEvent.description);
     const free = useSelector(state => state.createEvent.free);
 
+    const [createdEventId, setCreatedEventId] = useState(null);
+    const ticketInputs = useSelector(state => state.createEvent.tickets)
+
+
+    const handleSaveTickets = async (eventId) => {
+        const tickets = ticketInputs.map(ticket => ({
+            eventId: eventId,
+            ticketName: ticket.name,
+            ticketPrice: ticket.price,
+        }));
+        try {
+            const res = await makeRequest.post('/tickets', tickets);
+            console.log('tickets res: ', res)
+            return res;
+        } catch(err) {
+            return err;
+        }
+    }
+
 
     const handleSaveEvent = async () => {
         const bodyInputs = {
@@ -36,12 +55,15 @@ const CreateEvent = () => {
         }
         try {
             const res = await makeRequest.post('/event', bodyInputs);
+            setCreatedEventId(res.data.insertId);
+            await handleSaveTickets(createdEventId);
             return res;
         } catch (err) {
             return err;
         }
     }
-
+    // console.log('create event res:', createdEventId)
+    
     const handleUploadBanner = async () => {
         const formData = new FormData();
         formData.append('file', banner);
@@ -79,8 +101,8 @@ const CreateEvent = () => {
 
             <button 
             onClick={handleNextPage}
-            className='createEvent__saveBtn'>Save & Continue
-            </button>
+            className='createEvent__saveBtn'>Save & Continue</button>
+
         </div>
     </div>
   )

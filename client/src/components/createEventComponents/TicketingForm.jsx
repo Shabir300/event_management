@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFree } from "../../redux/createEventSlice";
+import { setFree, setTickets } from "../../redux/createEventSlice";
 
 const TicketingForm = () => {
 
@@ -30,10 +30,13 @@ const TicketingForm = () => {
         setTicketInputs(prevTickets => 
             prevTickets.map((ticket) => 
             ticket.id === id ? {...ticket, [field]: value} : ticket),
-        )
+        );
     }
-
-
+// console.log('tickets updates:', ticketInputs)
+    useEffect(() => {
+        const updatedTickets = [...ticketInputs]
+        dispatch(setTickets(updatedTickets));
+    }, [ticketInputs]);
 
     return (
         <div className='createEvent__ticketing'>

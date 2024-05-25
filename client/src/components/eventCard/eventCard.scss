@@ -11,4 +11,8 @@
     &_description {
         @include event-card-description;
     }
+
+    &__tickets {
+        @include flex-row(20px);
+    }
 }
