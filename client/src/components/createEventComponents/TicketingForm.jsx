@@ -1,6 +1,11 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFree } from "../../redux/createEventSlice";
 
 const TicketingForm = () => {
+
+    const dispatch = useDispatch();
+    const free = useSelector(state => state.createEvent.free);
     
     const [ticketInputs, setTicketInputs] = useState([
         {
@@ -38,14 +43,14 @@ const TicketingForm = () => {
     
             <div className='createEvent__ticketing__details__typeBox'>
                 <div
-                //  onClick={() => setInputs(prev => ({...prev, free: false}))} style={{backgroundColor: inputs.free ? `transparent` : `#F6FBFF`}}
+                 onClick={() => dispatch(setFree(false))} style={{backgroundColor: free ? `transparent` : `#F6FBFF`, cursor: 'pointer'}}
                   className='createEvent__ticketing__details__typeBox__singleType'>
                     <i class="bi bi-ticket-perforated"></i>
                     <span className='fw-bold'>Ticketed Event</span>
                     <span>My event requires tickets for entry</span>
                 </div>
                 <div 
-                // onClick={() => setInputs(prev => ({...prev, free: true}))} style={{backgroundColor: inputs.free ? `#F6FBFF` : `transparent`}}
+                onClick={() => dispatch(setFree(true))} style={{backgroundColor: free ? `#F6FBFF` : `transparent`, cursor: 'pointer'}}
                  className='createEvent__ticketing__details__typeBox__singleType'>
                     <i class="bi bi-ticket-perforated"></i>
                     <span className='fw-bold'>Free Event</span>

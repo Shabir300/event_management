@@ -3,7 +3,7 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { useDispatch, useSelector } from "react-redux";
 import { setCategory, setDescription, setEndDate, setLocation, setStartDate, setTitle, setType } from "../../redux/createEventSlice";
-
+import LocationDropdown from '../dropdown/LocationDropdown';
 
 const EditForm = () => {
 
@@ -80,7 +80,7 @@ const EditForm = () => {
 
             <div className='createEvent__inputsForm__details__inputBox'>
                 <label>Event Title</label>
-                <input  name='title'  type='text' placeholder='Enter the name of your event' onChange={e => dispatch(setTitle(e.target.value))}  />
+                <input  name='title' value={title}  type='text' placeholder='Enter the name of your event' onChange={e => dispatch(setTitle(e.target.value))}  />
             </div>
     
             <div className='createEvent__inputsForm__details__inputBox'>
@@ -133,10 +133,7 @@ const EditForm = () => {
             <span className='createEvent__inputsForm__location__title'>Location</span>
             <div className='createEvent__inputsForm__location__inputBox'>
                 <label>Enter the location</label>
-                <input  value={location} 
-                onChange={e => dispatch(setLocation(e.target.value))} 
-                type='text' placeholder='Enter start of the event' />
-                {/* <Dropdown placeholder={'Select a location'} /> */}
+                <LocationDropdown location={location} />
     
             </div>
         

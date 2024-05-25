@@ -19,7 +19,7 @@ function BasicExample() {
 
   return (
     <Dropdown className='m-0 p-0'>
-      <Dropdown.Toggle className='border border-0 text-light p-0 m-0' variant="success" id="dropdown-basic">
+      <Dropdown.Toggle className='border border-0 text-light p-0 m-0'  id="dropdown-basic">
       <i class="bi bi-person-circle"></i>
         Profile
       </Dropdown.Toggle>
