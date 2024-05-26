@@ -9,24 +9,25 @@ const EventCard = ({event}) => {
 
   return (
     <div className='eventCard'>
-        
-        <img className='eventCard_image' alt='event' src='/static/eventImage.png' />
-        <div className='eventCard_description'>
-            <div>
-                NOV <br /> 24
-            </div>
-            <div>
-                    <span>{event.title}</span>
-                    <span>Online</span>
-                    <span>{event.startDate} - {event.endDate}</span>
-                    <div className='eventCard__tickets'>
-                    {tickets?.map(ticket => (
-                      <span>{ticket.ticketName} - {ticket.ticketPrice}</span>
-                    ))}
-                    </div>
+      <div className='eventCard_imageWrapper'>
+        <img className='eventCard_image' alt='event' src={event.coverPic ? `/uploads/${event.coverPic}` : '/static/eventImage.png'} />
+      </div>
+      <div className='eventCard__description'>
+          <div>
+              NOV <br /> 24
+          </div>
+          <div>
+                  <span>{event.title}</span>
+                  <span>Online</span>
+                  <span>{event.startDate} - {event.endDate}</span>
+                  <div className='eventCard__tickets'>
+                  {tickets?.map(ticket => (
+                    <span>{ticket.ticketName} - {ticket.ticketPrice}</span>
+                  ))}
+                  </div>
 
-            </div>
-        </div>
+          </div>
+      </div>
     </div>
   )
 }

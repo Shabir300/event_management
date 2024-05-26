@@ -41,6 +41,7 @@ const EditForm = () => {
 
     const handleStartDate = (selectedDates, dateStr, instance) => {
         // setInputs(prev => ({...prev, startDate: dateStr}));
+        console.log('date stuff:', dateStr)
         dispatch(setStartDate(dateStr));
     };
 
@@ -52,13 +53,17 @@ const EditForm = () => {
     useEffect(() => {
       flatpickr(startDateRef.current, {
         enableTime: true,
-        dateFormat: "d-m-Y H:i",
+        // dateFormat: "d-m-Y H:i",
+        dateFormat: "Y-m-d H:i:S",
+
         onChange: handleStartDate,
       });
 
       flatpickr(endDateRef.current, {
         enableTime: true,
-        dateFormat: "d-m-Y H:i",
+        // dateFormat: "d-m-Y H:i",
+        dateFormat: "Y-m-d H:i:S",
+
         onChange: handleEndDate
       });
     }, []);

@@ -5,6 +5,7 @@ const eventSlice = createSlice({
     initialState: {
         value: [],
         search: '',
+        sortBy: `Price (high to low)`,
     },
     reducers: {
         setEvents: (state, action) => {
@@ -12,10 +13,13 @@ const eventSlice = createSlice({
         },
         setSearch: (state, action) => {
             state.search = action.payload;
-        }
+        },
+        setSortBy: (state, action) => {
+            state.sortBy = action.payload;
+        },
     },
 });
 
-export const {setEvents, setSearch} = eventSlice.actions;
+export const {setEvents, setSearch, setSortBy} = eventSlice.actions;
 
 export default eventSlice.reducer;

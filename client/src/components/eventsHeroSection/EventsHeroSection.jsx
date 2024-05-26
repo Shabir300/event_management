@@ -10,13 +10,13 @@ const EventsHeroSection = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const citySearch = useSelector(state => state.events.search);
-  
+  const sortBy = useSelector(state => state.events.sortBy);
   
    
    useEffect(()=> {
      const handleFetch = async () => {
        try {
-         const res = await makeRequest.get(`/get-event-search?search=${search}&location=${citySearch}`);
+         const res = await makeRequest.get(`/get-event-search?search=${search}&location=${citySearch}&sortBy=${sortBy}`);
          dispatch(setEvents(res.data));
          // console.log('search res: ', res);
          return res;
@@ -25,7 +25,7 @@ const EventsHeroSection = () => {
        }
      }
      handleFetch();
-   }, [search, citySearch, dispatch]);
+   }, [search, citySearch, sortBy, dispatch]);
 
 
   const handleSearch = (e) => {

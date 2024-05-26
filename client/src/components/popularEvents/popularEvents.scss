@@ -4,6 +4,7 @@
 .popularEvents {
     @include section-design;
 
+
     &_section-title {
         @include section-title;
         @include flex-row;
@@ -16,5 +17,13 @@
         font-weight: bold;
         float: right;
         font-size: $small-text;
+    }
+
+    
+    
+    &__Box {
+        @include flex-row(41px);
+        flex-wrap: wrap;
+        margin-top: 3.125rem;
     }
 }

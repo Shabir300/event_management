@@ -26,8 +26,8 @@ const CreateEvent = () => {
     const ticketInputs = useSelector(state => state.createEvent.tickets)
 
 
-    const handleSaveTickets = async (eventId) => {
-        const tickets = ticketInputs.map(ticket => ({
+    const handleSaveTickets = async (eventId, ticketsArray) => {
+        const tickets = ticketsArray.map(ticket => ({
             eventId: eventId,
             ticketName: ticket.name,
             ticketPrice: ticket.price,
@@ -42,7 +42,7 @@ const CreateEvent = () => {
     }
 
 
-    const handleSaveEvent = async () => {
+    const handleSaveEvent = async (picName) => {
         const bodyInputs = {
             title,
             category,
@@ -52,11 +52,12 @@ const CreateEvent = () => {
             location,
             description,
             free: free ? 1 : 0,
+            coverPic: picName,
         }
         try {
             const res = await makeRequest.post('/event', bodyInputs);
             setCreatedEventId(res.data.insertId);
-            await handleSaveTickets(createdEventId);
+            await handleSaveTickets(res.data.insertId, ticketInputs);
             return res;
         } catch (err) {
             return err;
@@ -70,7 +71,7 @@ const CreateEvent = () => {
 
         try {
             const res = await makeRequest.post('/upload', formData);
-            await handleSaveEvent();
+            await handleSaveEvent(res.data);
             return res;
         } catch (err) {
             return err;

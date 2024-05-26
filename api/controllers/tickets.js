@@ -4,8 +4,8 @@ export const addTickets = (req, res) => {
     const q = "INSERT INTO tickets(`eventId`, `ticketName`, `ticketPrice`) VALUES ?"
     const values = req.body.map(ticket => [
         ticket.eventId,
-        ticket.name,
-        ticket.price
+        ticket.ticketName,
+        ticket.ticketPrice
     ]);
 
     db.query(q, [values], (err, result) => {
