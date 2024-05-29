@@ -12,3 +12,7 @@ export const getCategories = (req, res) => {
     });
 };
 
+
+export const getFiltersCategories = (req, res) => {
+    const q = "SELECT events.categories"
+};

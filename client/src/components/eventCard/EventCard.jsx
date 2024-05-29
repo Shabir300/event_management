@@ -1,5 +1,6 @@
 import React from 'react';
 import './eventCard.scss';
+import { Link } from 'react-router-dom';
 
 const EventCard = ({event}) => {
   console.log('event', event);
@@ -8,6 +9,7 @@ const EventCard = ({event}) => {
 
 
   return (
+  <Link style={{textDecoration: 'none'}} to={`/event/${event.id}`}>
     <div className='eventCard'>
       <div className='eventCard_imageWrapper'>
         <img className='eventCard_image' alt='event' src={event.coverPic ? `/uploads/${event.coverPic}` : '/static/eventImage.png'} />
@@ -29,6 +31,7 @@ const EventCard = ({event}) => {
           </div>
       </div>
     </div>
+  </Link>
   )
 }
 

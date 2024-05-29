@@ -8,6 +8,10 @@
     color: $dark-text;
     padding-bottom: 5rem;
 
+    @media screen and (max-width: 800px) {
+        padding-inline: 5vw;
+    };
+
     &_title {
         @include first-title;
     }
@@ -183,7 +187,7 @@
         float: right;
         margin-bottom: 5rem;
     }
-}
+};
 
 
 .ticketBoxDiv {

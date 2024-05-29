@@ -89,9 +89,12 @@
 
         &_iconandplace {
             @include flex-row(20px);
-            align-items: flex-start;
+            align-items: center;
             .bi.bi-geo-alt-fill {
                 font-size: $small-text;
+            }
+            > h6 {
+                margin: 0;
             }
         }
     }
@@ -106,7 +109,9 @@
 
             img {
                 width: 80px;
-                height: auto;
+                height: 80px;
+                border-radius: 50%;
+                max-height: auto;
             }
 
             &_desc {

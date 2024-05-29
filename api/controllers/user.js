@@ -94,3 +94,18 @@ export const changePassword = (req, res) => {
         })
     })
 };
+
+
+export const getOrganizer = (req, res) => {
+    const q = 'SELECT * FROM users WHERE id = ?'
+
+    const id = parseInt(req.query.id);
+
+    db.query(q, [id], (err, result) => {
+        if(err) return res.status(500).json(err);
+        
+        const user = result[0];
+        const {password, ...other} = user;
+        res.status(200).json(other);
+    }) 
+}

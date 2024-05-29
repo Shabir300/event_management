@@ -4,11 +4,16 @@
 .popularEvents {
     @include section-design;
 
+    &__headerFilters {
+        @include flex-row(20px);
+        align-items: center;
+    }
 
-    &_section-title {
+    &__section-title {
         @include section-title;
         @include flex-row;
         justify-content: space-between;
+        align-items: center;
     }
 
     &__sortBy {
@@ -26,4 +31,20 @@
         flex-wrap: wrap;
         margin-top: 3.125rem;
     }
+
+    @media screen and (max-width: 1000px) {
+        &__section-title {
+            @include flex-col;
+            align-items: flex-start;
+        }
+
+        &__headerFilters {
+
+            width: 100%;
+            justify-content: flex-end;
+            float: right;
+            margin-top: 1rem;
+        }
+    }
+
 }
