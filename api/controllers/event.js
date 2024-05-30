@@ -30,7 +30,7 @@ export const addEvent = (req, res) => {
 };
 
 export const getEvent = (req, res) => {
-    const q = "SELECT e.*, json_arrayagg(json_object('ticketName', t.ticketName, 'ticketPrice', t.ticketPrice)) as tickets  FROM events as e join tickets as t on t.eventId = e.id WHERE e.id = ?"
+    const q = "SELECT e.*, json_arrayagg(json_object('ticketName', t.ticketName, 'ticketPrice', t.ticketPrice)) as tickets  FROM events as e join tickets as t on t.eventId = e.id WHERE e.id = ? GROUP BY e.id"
 
     const id = parseInt(req.params.id);
 
@@ -101,3 +101,30 @@ export const getEventSearch = (req, res) => {
 
 };
 
+export const getInterestedEventsObjs = (req, res) => {
+
+    
+    // Log the raw query parameter value
+    console.log('Raw ids query parameter:', req.query.ids);
+    
+    // Try to parse the ids as JSON
+    let ids;
+    try {
+        ids = JSON.parse(req.query.ids);
+    } catch (e) {
+        // If JSON parsing fails, try to split the string by commas
+        ids = req.query.ids.split(',').map(id => parseInt(id.trim(), 10));
+    }
+    
+    // Log the parsed ids array
+    console.log('Parsed ids:', ids);
+    
+    const placeholders = ids.map(() => '?').join(', ');
+    
+    const q = `SELECT e.*, json_arrayagg(json_object('ticketName', t.ticketName, 'ticketPrice', t.ticketPrice)) as tickets  FROM events as e join tickets as t on t.eventId = e.id  WHERE e.id IN (${placeholders}) GROUP BY e.id`
+
+    db.query(q, ids, (err, result) => {
+        if(err) return res.status(500).json(err);
+        res.status(200).json(result);
+    })
+};

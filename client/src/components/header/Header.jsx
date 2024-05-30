@@ -35,7 +35,9 @@ const Header = () => {
           ) : (
             <>
           <button className='registeredBtn'><i class="bi bi-ticket-perforated"></i>Tickets</button>
-          <button className='registeredBtn'><i class="bi bi-star"></i>Interested</button>
+          <Link to='/interested-events'>
+            <button className='registeredBtn'><i class="bi bi-star"></i>Interested</button>
+          </Link>
           {/* <button className='registeredBtn'><i class="bi bi-person-circle"></i>Profile</button> */}
           <BasicExample />
             </>

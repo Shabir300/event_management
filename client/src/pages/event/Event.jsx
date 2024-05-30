@@ -4,13 +4,15 @@ import Header from '../../components/header/Header';
 import { useParams } from 'react-router-dom';
 import { makeRequest } from '../../axios.js';
 import moment from 'moment';
+// import Cookies from 'js-cookie';
 
 const Event = () => {
     const {id} = useParams();
-    const [liked, setLiked] = useState(true);
+    const [liked, setLiked] = useState(null);
     const [event, setEvent] = useState({});
     const [tickets, setTickets] = useState([]);
     const [organizer, setOrganizer] = useState({});
+    const [interestedUsers, setInterestedUsers] = useState([]);
 
 useEffect(() => {
 
@@ -41,9 +43,40 @@ useEffect(() => {
 
     fetchEvent();
 
+    const fetchInterestedUsers = async () => {
+        try {
+            const res = await makeRequest.get(`/interested-users?eventId=${id}`);
+            console.log('interested users', res);
+            const users = res.data.map(interest => interest.userId);
+            setInterestedUsers(users);
+            const currentUser = JSON.parse(localStorage.getItem('user'));
+console.log('organizer', currentUser);
+
+            if(users && users.includes(currentUser.id)) {
+                setLiked(true)
+            } else if (users.length === 0) {
+                setLiked(false)
+            }
+            return res;
+        } catch (err) {
+            return err;
+        }
+    };
+
+    fetchInterestedUsers();
+
 }, [id]);
 
-console.log('organizer', organizer)
+
+const handleInterested = async (eventId) => {
+    try {
+        const res = await makeRequest.post(`/interested-event?eventId=${eventId}`);
+        console.log('interest log here:', res)
+        return res;
+    } catch (err) {
+        return err;
+    }
+}
 
   return (
 <>
@@ -51,7 +84,7 @@ console.log('organizer', organizer)
     <div className='singleEvent'>
         
         <div>
-            <img alt='event-img' src='/static/singleEventImage.png' />
+            <img alt='event-img' src={event?.coverPic ? `/uploads/${event.coverPic}` : '/static/singleEventImage.png'} />
             <i class="bi bi-arrow-left"></i>
         </div>
 
@@ -59,7 +92,7 @@ console.log('organizer', organizer)
             <div className='singleEvent_titleShare'>
                 <h1>{event?.title}</h1>
                 <div className='singleEvent_titleShare_Icons'>
-                    <i class={`bi bi-star${liked ? '-fill' : ''}`}></i>
+                    <i onClick={() => handleInterested(event.id)} class={`bi bi-star${liked ? '-fill' : ''}`}></i>
                     <i class="bi bi-share"></i>
                 </div>
             </div>

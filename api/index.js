@@ -7,6 +7,7 @@ import multer from 'multer';
 import categoryRouter from './routes/categoryRouter.js';
 import eventRouter from './routes/eventRouter.js';
 import ticketsRouter from './routes/ticketsRouter.js';
+import InterestedEventsRouter from './routes/interestedEventsRouter.js';
 import path from 'path';
 
 const app = express();
@@ -51,6 +52,7 @@ app.use('/api', authRouter);
 app.use('/api', userRouter);
 app.use('/api', categoryRouter);
 app.use('/api', eventRouter);
-app.use('/api', ticketsRouter)
+app.use('/api', ticketsRouter);
+app.use('/api', InterestedEventsRouter);
 
 app.listen(9000, () => console.log('server is listening!'));

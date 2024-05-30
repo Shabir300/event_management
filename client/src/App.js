@@ -8,6 +8,7 @@ import Event from './pages/event/Event';
 import Profile from './pages/profile/Profile';
 import CreateEvent from './pages/createEvent/CreateEvent';
 import Events from './pages/events/Events';
+import InterestedEvents from './pages/interests/InterestedEvents';
 import {createBrowserRouter, RouterProvider, Outlet, Navigate, json} from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
     {
       path: '/events',
       element: <Events />,
+    },
+    {
+      path: '/interested-events',
+      element: <InterestedEvents />,
     }
 ]);
 
