@@ -70,12 +70,27 @@ console.log('organizer', currentUser);
 
 
 const handleInterested = async (eventId) => {
-    try {
-        const res = await makeRequest.post(`/interested-event?eventId=${eventId}`);
-        console.log('interest log here:', res)
-        return res;
-    } catch (err) {
-        return err;
+    if (!liked) {
+        try {
+            const res = await makeRequest.post(`/interested-event?eventId=${eventId}`);
+            if (res?.data?.affectedRows === 1) {
+                setLiked(true);
+            }
+            return res;
+        } catch (err) {
+            return err;
+        }
+    } else if (liked) {
+        try {
+            const res = await makeRequest.delete(`/interested-event?eventId=${eventId}`);
+            console.log('unliked', res)
+            if(res?.data?.affectedRows === 1) {
+                setLiked(false);
+            }
+            return res;
+        } catch (err) {
+            return err;
+        }
     }
 }
 

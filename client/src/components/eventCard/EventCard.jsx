@@ -19,15 +19,14 @@ const EventCard = ({event}) => {
               NOV <br /> 24
           </div>
           <div>
-                  <span>{event.title}</span>
-                  <span>Online</span>
-                  <span>{event.startDate} - {event.endDate}</span>
-                  <div className='eventCard__tickets'>
-                  {tickets?.map(ticket => (
-                    <span>{ticket.ticketName} - {ticket.ticketPrice}</span>
-                  ))}
-                  </div>
-
+            <span>{event.title}</span>
+            <span>Online</span>
+            <span>{event.startDate} - {event.endDate}</span>
+            <div className='eventCard__tickets'>
+            {tickets?.map(ticket => (
+              <span>{ticket.ticketName} - {ticket.ticketPrice}</span>
+            ))}
+            </div>
           </div>
       </div>
     </div>

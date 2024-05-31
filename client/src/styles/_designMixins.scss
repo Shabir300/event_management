@@ -134,7 +134,7 @@
 
 @mixin section-design {
     width: 100%;
-    height: $section-height;
+    height: auto;
     background-color: #FFFFFF;
     margin-top: 9.375rem;
     padding-inline: $primary-padding-web;

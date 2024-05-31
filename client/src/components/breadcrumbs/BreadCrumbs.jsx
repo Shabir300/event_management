@@ -1,17 +1,9 @@
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import './breadCrumbs.scss'
+import './breadCrumbs.scss';
 
 function BreadcrumbExample({currentForm, setCurrentForm}) {
   const isActive = (form) => currentForm === form;
   console.log('active', currentForm)
   return (
-    // <Breadcrumb>
-    //   <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-    //   <Breadcrumb.Item href="">
-    //     Library
-    //   </Breadcrumb.Item>
-    //   <Breadcrumb.Item active>Data</Breadcrumb.Item>
-    // </Breadcrumb>
     <div className='breadcrumbs'>
       <div 
       className={`${isActive('Edit')? `active`: ''}`}
