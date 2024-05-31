@@ -9,7 +9,10 @@ import eventRouter from './routes/eventRouter.js';
 import ticketsRouter from './routes/ticketsRouter.js';
 import InterestedEventsRouter from './routes/interestedEventsRouter.js';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 
 app.use((req, res, next) => {
