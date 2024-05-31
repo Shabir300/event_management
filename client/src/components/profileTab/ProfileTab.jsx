@@ -25,11 +25,7 @@ function BasicExample() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu className='menu dropdown-menu-dark'>
-        <Dropdown.Item  className='hover-dark'>
-            <Link>
-            Interests
-            </Link>
-            </Dropdown.Item>
+        
         <Dropdown.Item >
             <Link to='profile'>
             Account Settings

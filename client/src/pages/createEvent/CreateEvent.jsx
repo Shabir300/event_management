@@ -8,6 +8,7 @@ import EditForm from '../../components/createEventComponents/EditForm.jsx';
 import BannerForm from '../../components/createEventComponents/BannerForm.jsx';
 import TicketingForm from '../../components/createEventComponents/TicketingForm.jsx';
 import { useSelector } from 'react-redux';
+import Footer from '../../components/footer/Footer.jsx';
 
 const CreateEvent = () => {
 
@@ -105,6 +106,8 @@ const CreateEvent = () => {
             className='createEvent__saveBtn'>Save & Continue</button>
 
         </div>
+
+        <Footer />
     </div>
   )
 }

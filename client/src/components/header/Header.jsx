@@ -34,7 +34,7 @@ const Header = () => {
             </>
           ) : (
             <>
-          <button className='registeredBtn'><i class="bi bi-ticket-perforated"></i>Tickets</button>
+          {/* <button className='registeredBtn'><i class="bi bi-ticket-perforated"></i>Tickets</button> */}
           <Link to='/interested-events'>
             <button className='registeredBtn'><i class="bi bi-star"></i>Interested</button>
           </Link>

@@ -55,7 +55,7 @@
 };
 
 .registerBtns {
-    @include flex-row(20px);
+    @include flex-row;
     align-items: center;
     a {
         text-decoration: none;

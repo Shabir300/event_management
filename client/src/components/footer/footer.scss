@@ -1,0 +1,12 @@
+@import '../../styles/designMixins';
+@import '../../styles/variables';
+
+
+.footer {
+    background-color: $dark-text;
+    color: $white-text;
+}
+
+.item {
+    color: $light-text;
+}

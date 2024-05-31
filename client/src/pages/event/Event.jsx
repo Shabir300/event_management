@@ -4,6 +4,7 @@ import Header from '../../components/header/Header';
 import { useParams } from 'react-router-dom';
 import { makeRequest } from '../../axios.js';
 import moment from 'moment';
+import Footer from '../../components/footer/Footer.jsx';
 // import Cookies from 'js-cookie';
 
 const Event = () => {
@@ -154,6 +155,8 @@ const handleInterested = async (eventId) => {
             </div>
         </div>
     </div>
+
+    <Footer />
 </>
 
   )

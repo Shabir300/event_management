@@ -8,6 +8,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
+import Footer from '../../components/footer/Footer';
 
 const Profile = () => {
 
@@ -389,6 +390,8 @@ const PasswordInfo = () => {
         <PasswordInfo />
       </Tab>
     </Tabs>
+
+    <Footer />
     
 </>
   )

@@ -5,6 +5,7 @@ import EventHeroSection from '../../components/eventsHeroSection/EventsHeroSecti
 import { makeRequest } from '../../axios.js';
 import { setEvents } from '../../redux/eventSlice.js';
 import { useDispatch } from 'react-redux';
+import Footer from '../../components/footer/Footer';
 
 const Events = () => {
 
@@ -30,6 +31,7 @@ const Events = () => {
         <Header />
         <EventHeroSection />
         <PopularEvents  />
+        <Footer />
     </div>
   )
 }
