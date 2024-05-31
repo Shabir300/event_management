@@ -1,0 +1,8 @@
+[services]
+  [services.api]
+    build = "cd api && npm install"
+    start = "cd api && npm start"
+
+  [services.client]
+    build = "cd client && npm install && npm run build"
+    start = "cd client && serve -s build"

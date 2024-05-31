@@ -46,6 +46,11 @@ app.post('/api/upload', upload.single('file'), function (req, res) {
 // app.use('/upload', express.static(path.join(__dirname, 'upload')));
 // app.use('/static', express.static(path.join(__dirname, 'static')));
 
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
 
 // ROUTES 
 app.use('/api', authRouter);
